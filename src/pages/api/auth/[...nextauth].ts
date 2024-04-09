@@ -4,6 +4,7 @@ import SlackProvider from "next-auth/providers/slack";
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
   return await NextAuth(req, res, {
+    secret: process.env.NEXTAUTH_SECRET,
     providers: [
       SlackProvider({
         clientId: process.env.SLACK_CLIENT_ID as string,
@@ -13,7 +14,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     ],
     callbacks: {
       async jwt({ token, profile, account }) {
-        console.log({ token, profile, account });
+        // console.log({ token, profile, account });
         if (profile && account) {
           token.id = profile.sub;
           token.accessToken = account.access_token;
