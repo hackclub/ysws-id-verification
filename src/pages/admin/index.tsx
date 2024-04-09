@@ -1,12 +1,12 @@
 import { SignOut } from "@/components/Auth";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import admins from "@/lib/admins";
 import { User } from "@/types/user";
 import { useSession } from "next-auth/react";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { ADMINS } from "..";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,7 @@ const Admin = () => {
     return <p>Access Denied</p>;
   }
 
-  if (session?.user.id && !ADMINS.includes(session.user.id)) {
+  if (session?.user.id && !admins.includes(session.user.id)) {
     return <p>Access Denied</p>;
   }
 

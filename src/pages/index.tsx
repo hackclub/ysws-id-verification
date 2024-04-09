@@ -1,11 +1,11 @@
 import { SignIn } from "@/components/Auth";
+import admins from "@/lib/admins";
 import { useSession } from "next-auth/react";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
-export const ADMINS = ["U014ND5P1N2"];
 
 export default function Home() {
   const { data } = useSession();
@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     if (!data || !data.user.id) return;
 
-    if (ADMINS.includes(data.user.id)) router.push("/admin");
+    if (admins.includes(data.user.id)) router.push("/admin");
     else router.push("/dashboard");
   }, [data]);
 

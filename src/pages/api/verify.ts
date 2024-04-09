@@ -1,6 +1,6 @@
+import base from "@/lib/airtable";
+import { VerificationStatus } from "@/types/user";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User, VerificationStatus } from "@/types/user";
-import { base } from "@/lib/airtable";
 
 // POST - /api/verify - Update a user's verification status
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

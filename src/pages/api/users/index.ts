@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import base from "@/lib/airtable";
 import { User } from "@/types/user";
-import { base } from "@/lib/airtable";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 // GET - /api/users - Get users that are pending verification
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

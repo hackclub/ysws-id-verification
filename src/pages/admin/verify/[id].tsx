@@ -1,4 +1,4 @@
-import { ADMINS } from "@/pages";
+import admins from "@/lib/admins";
 import { User } from "@/types/user";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -19,7 +19,7 @@ const VerifyUserPage = () => {
     return <p>Access Denied</p>;
   }
 
-  if (session?.user.id && !ADMINS.includes(session.user.id)) {
+  if (session?.user.id && !admins.includes(session.user.id)) {
     return <p>Access Denied</p>;
   }
 
@@ -27,12 +27,18 @@ const VerifyUserPage = () => {
     <main>
       <h1>Verify User</h1>
       {isLoading && <p>Loading...</p>}
-      {data && (
-        <div>
-          <h2>{data.Name}</h2>
-          <p>{data.Email}</p>
-        </div>
-      )}
+      <div>
+        {data &&
+          Object.keys(data).map((key) => {
+            const item = data[key as keyof typeof data];
+            return (
+              <p>
+                <strong key={key}>{key}</strong>:{" "}
+                {typeof item === "string" || typeof item === "number" ? item : JSON.stringify(item)}
+              </p>
+            );
+          })}
+      </div>
     </main>
   );
 };
