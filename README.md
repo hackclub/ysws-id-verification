@@ -19,10 +19,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] If verification not done - Show a huge banner on top to make them submit for verification
 - [ ] `VerificationForm` - Embed Airtable form
 - [ ] Show their verification status on the dashboard
-- [ ] If verified, they can apply for grants. They can submit a grant request - One common form for all grants
-- [ ] Show grant request status
 
 ### Other
 - [ ] Protect admin APIs
 - [ ] Be exacting and more explicit on accepted ID types
 - [ ] Track new applications via slacker
+- [ ] Probably create a table to search through the list of users and whether they are verified or not (by email / name / github id)
