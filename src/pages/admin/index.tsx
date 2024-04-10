@@ -30,7 +30,10 @@ const Admin = () => {
 
   const pendingUsers =
     data?.filter(
-      (d) => d["Verification Status"] === "Ongoing" || d["Verification Status"] === "Pending"
+      (d) =>
+        d["Verification Status"] === "Ongoing" ||
+        d["Verification Status"] === "Pending" ||
+        d["Verification Status"] === "Vouched For"
     ) || [];
 
   return (

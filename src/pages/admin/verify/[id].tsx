@@ -126,7 +126,7 @@ const VerifyUserPage = () => {
             <strong>Birthday:</strong> {data?.Birthday}
           </p>
           <p>
-            <strong>Age:</strong> {data?.["Age (years)"]} ({data?.Grade}th grade)
+            <strong>Age:</strong> {data?.["Age (years)"]}
           </p>
           <p>
             <strong>School:</strong> {data?.["School Name"]} ({data?.["School Address"]})

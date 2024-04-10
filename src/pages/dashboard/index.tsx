@@ -44,8 +44,7 @@ export default function Dashboard() {
             <p>
               Your ID is verified! You can now go ahead and apply for our You Ship We Ship programs.
             </p>
-          ) : data["Verification Status"] === "Ongoing" ||
-            data["Verification Status"] === "Pending" ? (
+          ) : ["Ongoing", "Pending", "Vouched For"].includes(data["Verification Status"]) ? (
             <p>
               Your ID is currently being verified. Please wait for a few days for the verification
               process to complete.

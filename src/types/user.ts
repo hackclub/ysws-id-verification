@@ -24,4 +24,4 @@ export interface User {
   "Nominated By": string[];
 }
 
-export type VerificationStatus = "Pending" | "Ongoing" | "Approved" | "Rejected";
+export type VerificationStatus = "Pending" | "Ongoing" | "Approved" | "Rejected" | "Vouched For";
