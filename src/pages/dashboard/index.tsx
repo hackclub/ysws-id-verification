@@ -51,22 +51,27 @@ export default function Dashboard() {
               process to complete.
             </p>
           ) : data["Verification Status"] === "Rejected" ? (
-            <p>
-              Your ID has been rejected. Please re-submit{" "}
-              <Link
-                className="font-medium text-primary underline underline-offset-4"
-                href="/dashboard/verify"
-              >
-                the form
-              </Link>{" "}
-              or contact us.
-            </p>
+            <p>Your ID has been rejected. Please re-submit the form or contact us.</p>
           ) : (
             <></>
           )}
         </div>
       ) : (
-        <VerificationBanner />
+        <></>
+      )}
+      {!data || data["Verification Status"] === "Rejected" ? (
+        <>
+          <div className="min-h-screen p-12 flex flex-col items-center justify-center gap-2">
+            <iframe
+              className="rounded max-w-4xl h-[90vh]"
+              src="https://airtable.com/embed/appre1xwKlj49p0d4/pagUCWEM9v15VluC7/form"
+              width="100%"
+              style={{ background: "transparent", border: "1px solid #ccc" }}
+            ></iframe>
+          </div>
+        </>
+      ) : (
+        <></>
       )}
     </main>
   );
