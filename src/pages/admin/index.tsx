@@ -1,6 +1,8 @@
 import { SignOut } from "@/components/Auth";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { columns } from "@/components/ui/users/columns";
+import { DataTable } from "@/components/ui/users/data-table";
 import admins from "@/lib/admins";
 import { User } from "@/types/user";
 import { useSession } from "next-auth/react";
@@ -26,6 +28,11 @@ const Admin = () => {
     return <p>Access Denied</p>;
   }
 
+  const pendingUsers =
+    data?.filter(
+      (d) => d["Verification Status"] === "Ongoing" || d["Verification Status"] === "Pending"
+    ) || [];
+
   return (
     <main className={`p-10 ${inter.className}`}>
       <div className="flex items-center justify-between mb-12">
@@ -36,7 +43,25 @@ const Admin = () => {
         Pending Verifications
       </h2>
       {isLoading && <p>Loading...</p>}
-      {data && data.map((person) => <VerifyUser key={person.Email} person={person} />)}
+      {pendingUsers.length > 0 ? (
+        pendingUsers.map((person) => <VerifyUser key={person.id} person={person} />)
+      ) : (
+        <p className="text-center mt-5 text-gray-700">No pending verifications</p>
+      )}
+      <h2 className="mt-10 mb-5 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+        All Users
+      </h2>
+      <DataTable
+        columns={columns}
+        data={(data || []).map((d) => ({
+          id: d.id,
+          name: d.Name,
+          email: d.Email,
+          github: d["GitHub Username"],
+          age: d["Age (years)"],
+          status: d["Verification Status"],
+        }))}
+      />
     </main>
   );
 };
