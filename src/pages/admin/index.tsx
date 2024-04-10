@@ -57,7 +57,6 @@ const Admin = () => {
           id: d.id,
           name: d.Name,
           email: d.Email,
-          github: d["GitHub Username"],
           age: d["Age (years)"],
           status: d["Verification Status"],
         }))}
@@ -103,7 +102,7 @@ const VerifyUser: React.FC<{ person: User }> = ({ person }) => {
     >
       <div>
         <h3 className="text-2xl font-semibold tracking-tight">{person.Name}</h3>
-        <p className="text-sm">@{person["GitHub Username"]}</p>
+        <p className="text-sm">{person["Age (years)"]} years old</p>
         <p className="text-sm">{person.Email}</p>
       </div>
       {person["Verification Status"] === "Pending" ? (

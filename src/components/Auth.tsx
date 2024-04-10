@@ -47,7 +47,7 @@ export const SignOut: React.FC<PropsWithChildren> = ({ children }) => {
       }}
     >
       <p>{children}</p>
-      <Button variant="secondary" type="submit">
+      <Button variant="ghost" type="submit">
         Sign out
       </Button>
     </form>

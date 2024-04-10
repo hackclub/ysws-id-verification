@@ -18,7 +18,6 @@ export type UserRow = {
   id: string;
   name: string;
   email: string;
-  github: string;
   age: number;
   status: VerificationStatus;
 };

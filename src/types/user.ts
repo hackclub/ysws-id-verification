@@ -3,7 +3,6 @@ export interface User {
   "Address Line 1": string;
   "Address Line 2": string;
   Email: string;
-  "GitHub Username": string;
   Zip: string;
   Name: string;
   Birthday: string;
@@ -17,6 +16,11 @@ export interface User {
   "Created At": string;
   "Age (years)": number;
   "Address Formatted": string;
+  "School Name": string;
+  "School Address": string;
+  Grade: string;
+  "Club Member": boolean;
+  "Club Name": string;
 }
 
 export type VerificationStatus = "Pending" | "Ongoing" | "Approved" | "Rejected";

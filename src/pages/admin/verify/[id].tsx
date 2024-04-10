@@ -84,9 +84,17 @@ const VerifyUserPage = () => {
           <p>
             <strong>Name:</strong> {data?.Name}
           </p>
-          <p>
-            <strong>GitHub username:</strong> {data?.["GitHub Username"]}
-          </p>
+          {data?.["Hack Club Slack ID"] && (
+            <p>
+              <strong>Slack Profile:</strong>{" "}
+              <a
+                className="font-medium text-primary underline underline-offset-4"
+                href={`https://hackclub.slack.com/team/${data?.["Hack Club Slack ID"]}`}
+              >
+                {data?.["Hack Club Slack ID"]}
+              </a>
+            </p>
+          )}
           <p>
             <strong>Email:</strong> {data?.Email}
           </p>
@@ -97,29 +105,31 @@ const VerifyUserPage = () => {
             <strong>Birthday:</strong> {data?.Birthday}
           </p>
           <p>
-            <strong>Age:</strong> {data?.["Age (years)"]}
+            <strong>Age:</strong> {data?.["Age (years)"]} ({data?.Grade}th grade)
           </p>
           <p>
-            <strong>Slack ID:</strong> {data?.["Hack Club Slack ID"]}
+            <strong>School:</strong> {data?.["School Name"]} ({data?.["School Address"]})
           </p>
+          <p>
+            <strong>Is a club member?</strong> {data?.["Club Member"] ? "Yes" : "No"}
+          </p>
+          {data?.["Club Member"] && (
+            <p>
+              <strong>Club Name:</strong> {data?.["Club Name"]}
+            </p>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
           <Button
             onClick={() => handleVerification("Approved")}
-            disabled={
-              data?.["Verification Status"] === "Approved" ||
-              data?.["Verification Status"] === "Rejected"
-            }
+            disabled={data?.["Verification Status"] === "Approved"}
           >
             Approve
           </Button>
           <Button
             onClick={() => handleVerification("Rejected")}
-            disabled={
-              data?.["Verification Status"] === "Approved" ||
-              data?.["Verification Status"] === "Rejected"
-            }
+            disabled={data?.["Verification Status"] === "Rejected"}
             variant="destructive"
           >
             Reject
