@@ -1,5 +1,6 @@
 import { signIn, signOut } from "next-auth/react";
 import { PropsWithChildren } from "react";
+import { Button } from "./ui/button";
 
 export const SignIn = () => {
   return (
@@ -46,7 +47,9 @@ export const SignOut: React.FC<PropsWithChildren> = ({ children }) => {
       }}
     >
       <p>{children}</p>
-      <button type="submit">Sign out</button>
+      <Button variant="secondary" type="submit">
+        Sign out
+      </Button>
     </form>
   );
 };
