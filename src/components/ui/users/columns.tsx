@@ -18,6 +18,7 @@ export type UserRow = {
   id: string;
   name: string;
   email: string;
+  slackId: string;
   age: number;
   status: VerificationStatus;
 };
@@ -42,8 +43,8 @@ export const columns: ColumnDef<UserRow>[] = [
     header: "Email",
   },
   {
-    accessorKey: "github",
-    header: "Github",
+    accessorKey: "slack",
+    header: "Slack ID",
   },
   {
     accessorKey: "age",

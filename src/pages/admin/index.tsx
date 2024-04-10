@@ -57,6 +57,7 @@ const Admin = () => {
           id: d.id,
           name: d.Name,
           email: d.Email,
+          slackId: d["Hack Club Slack ID"],
           age: d["Age (years)"],
           status: d["Verification Status"],
         }))}
