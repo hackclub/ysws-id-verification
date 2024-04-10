@@ -18,7 +18,7 @@ export type UserRow = {
   id: string;
   name: string;
   email: string;
-  slackId: string;
+  slack: string;
   age: number;
   status: VerificationStatus;
 };
