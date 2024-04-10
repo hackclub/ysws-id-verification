@@ -2,15 +2,15 @@ import base from "@/lib/airtable";
 import { User } from "@/types/user";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-// GET - /api/users - Get users that are pending verification
+// GET - /api/users - Get all users
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const users: Partial<User>[] = [];
 
   try {
     await base("Users")
       .select({
-        filterByFormula:
-          "AND(NOT({Verification Status} = 'Approved'), NOT({Verification Status} = 'Rejected'))",
+        // filterByFormula:
+        //   "AND(NOT({Verification Status} = 'Approved'), NOT({Verification Status} = 'Rejected'))",
       })
       .all()
       .then((records) => {
