@@ -1,10 +1,15 @@
+import admins from "@/lib/admins";
 import base from "@/lib/airtable";
 import { User } from "@/types/user";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getToken } from "next-auth/jwt";
 
 // GET - /api/users - Get all users
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const users: Partial<User>[] = [];
+
+  const token = await getToken({ req });
+  if (!token || !token.id || !admins.includes(token.id)) return res.status(401);
 
   try {
     await base("Users")
