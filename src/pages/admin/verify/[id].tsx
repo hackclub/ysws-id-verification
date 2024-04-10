@@ -11,6 +11,7 @@ const VerifyUserPage = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const { toast } = useToast();
+
   const { data, isLoading } = useSWR<User>(
     router.query.id ? `/api/users/${router.query.id}` : undefined
   );
@@ -44,8 +45,28 @@ const VerifyUserPage = () => {
         description: `Identity verification ${status} for ${data.Name}`,
         duration: 2000,
       });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-      router.push(`/admin/verify/${data.id}`);
+  const handleNomination = async () => {
+    try {
+      if (!data) return;
+
+      await fetch("/api/nominate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: data.id }),
+      });
+
+      toast({
+        title: "Success",
+        description: `${data.Name} was nominated by you`,
+        duration: 2000,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -118,9 +139,23 @@ const VerifyUserPage = () => {
               <strong>Club Name:</strong> {data?.["Club Name"]}
             </p>
           )}
+          {data?.["Nominated By"] && data["Nominated By"].length > 0 ? (
+            <p>
+              <strong>Nominated By:</strong> {data?.["Nominated By"].join(", ")}
+            </p>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
+          <Button
+            disabled={data?.["Nominated By"]?.includes(session?.user.name || "")}
+            onClick={handleNomination}
+            variant="secondary"
+          >
+            Nominate
+          </Button>
           <Button
             onClick={() => handleVerification("Approved")}
             disabled={data?.["Verification Status"] === "Approved"}

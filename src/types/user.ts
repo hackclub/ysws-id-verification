@@ -21,6 +21,7 @@ export interface User {
   Grade: string;
   "Club Member": boolean;
   "Club Name": string;
+  "Nominated By": string[];
 }
 
 export type VerificationStatus = "Pending" | "Ongoing" | "Approved" | "Rejected";
