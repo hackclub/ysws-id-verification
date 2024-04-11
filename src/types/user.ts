@@ -21,7 +21,8 @@ export interface User {
   Grade: string;
   "Club Member": boolean;
   "Club Name": string;
-  "Nominated By": string[];
+  "Vouched By": string[];
+  "Vouch Reason": string;
 }
 
 export type VerificationStatus = "Pending" | "Ongoing" | "Approved" | "Rejected" | "Vouched For";

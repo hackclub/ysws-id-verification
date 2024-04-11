@@ -50,27 +50,27 @@ const VerifyUserPage = () => {
     }
   };
 
-  const handleNomination = async () => {
-    try {
-      if (!data) return;
+  // const handleVouch = async () => {
+  //   try {
+  //     if (!data) return;
 
-      await fetch("/api/nominate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ id: data.id }),
-      });
+  //     await fetch("/api/vouch", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ id: data.id }),
+  //     });
 
-      toast({
-        title: "Success",
-        description: `${data.Name} was nominated by you`,
-        duration: 2000,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     toast({
+  //       title: "Success",
+  //       description: `${data.Name} was Vouched by you`,
+  //       duration: 2000,
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <main className={`p-10`}>
@@ -88,7 +88,7 @@ const VerifyUserPage = () => {
 
         <div>
           <strong>Proof:</strong>
-          {data?.["Proof of Student"].map((proof) => (
+          {data?.["Proof of Student"]?.map((proof) => (
             <Image
               priority
               key={proof.id}
@@ -126,7 +126,7 @@ const VerifyUserPage = () => {
             <strong>Birthday:</strong> {data?.Birthday}
           </p>
           <p>
-            <strong>Age:</strong> {data?.["Age (years)"]}
+            <strong>Age:</strong> {JSON.stringify(data?.["Age (years)"])}
           </p>
           <p>
             <strong>School:</strong> {data?.["School Name"]} ({data?.["School Address"]})
@@ -139,9 +139,9 @@ const VerifyUserPage = () => {
               <strong>Club Name:</strong> {data?.["Club Name"]}
             </p>
           )}
-          {data?.["Nominated By"] && data["Nominated By"].length > 0 ? (
+          {data?.["Vouched By"] && data["Vouched By"].length > 0 ? (
             <p>
-              <strong>Nominated By:</strong> {data?.["Nominated By"].join(", ")}
+              <strong>Vouched By:</strong> {data?.["Vouched By"].join(", ")}
             </p>
           ) : (
             <></>
@@ -149,13 +149,13 @@ const VerifyUserPage = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button
-            disabled={data?.["Nominated By"]?.includes(session?.user.name || "")}
-            onClick={handleNomination}
+          {/* <Button
+            disabled={data?.["Vouched By"]?.includes(session?.user.name || "")}
+            onClick={handleVouch}
             variant="secondary"
           >
-            Nominate
-          </Button>
+            Vouch
+          </Button> */}
           <Button
             onClick={() => handleVerification("Approved")}
             disabled={data?.["Verification Status"] === "Approved"}
