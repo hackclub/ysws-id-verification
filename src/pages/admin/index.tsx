@@ -61,7 +61,6 @@ const Admin = () => {
           name: d.Name,
           email: d.Email,
           slack: d["Hack Club Slack ID"],
-          age: d["Age (years)"],
           status: d["Verification Status"],
         }))}
       />
@@ -106,7 +105,7 @@ const VerifyUser: React.FC<{ person: User }> = ({ person }) => {
     >
       <div>
         <h3 className="text-2xl font-semibold tracking-tight">{person.Name}</h3>
-        <p className="text-sm">{person["Age (years)"]} years old</p>
+        <p className="text-sm">{person["Hack Club Slack ID"]}</p>
         <p className="text-sm">{person.Email}</p>
       </div>
       {person["Verification Status"] === "Pending" ? (
