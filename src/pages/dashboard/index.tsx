@@ -1,9 +1,7 @@
-import { SignIn, SignOut } from "@/components/Auth";
-import VerificationBanner from "@/components/VerificationBanner";
+import { SignOut } from "@/components/Auth";
 import { User } from "@/types/user";
 import { useSession } from "next-auth/react";
 import { Inter } from "next/font/google";
-import Link from "next/link";
 import useSWR from "swr";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,7 +28,10 @@ export default function Dashboard() {
         </p>
         <SignOut />
       </div>
-      {isLoading ? (
+      <a href="https://airtable.com/appre1xwKlj49p0d4/pagUCWEM9v15VluC7/form">
+        Verification Form URL
+      </a>
+      {/* {isLoading ? (
         <p>Loading...</p>
       ) : data ? (
         <div>
@@ -71,7 +72,7 @@ export default function Dashboard() {
         </>
       ) : (
         <></>
-      )}
+      )} */}
     </main>
   );
 }

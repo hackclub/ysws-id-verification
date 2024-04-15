@@ -116,6 +116,17 @@ const VerifyUserPage = () => {
               </a>
             </p>
           )}
+          {data?.["GitHub Username"] && (
+            <p>
+              <strong>GitHub Profile:</strong>{" "}
+              <a
+                className="font-medium text-primary underline underline-offset-4"
+                href={`https://github.com/${data?.["GitHub Username"]}`}
+              >
+                {data?.["GitHub Username"]}
+              </a>
+            </p>
+          )}
           <p>
             <strong>Email:</strong> {data?.Email}
           </p>
@@ -128,17 +139,6 @@ const VerifyUserPage = () => {
           <p>
             <strong>Age:</strong> {JSON.stringify(data?.["Age (years)"])}
           </p>
-          <p>
-            <strong>School:</strong> {data?.["School Name"]} ({data?.["School Address"]})
-          </p>
-          <p>
-            <strong>Is a club member?</strong> {data?.["Club Member"] ? "Yes" : "No"}
-          </p>
-          {data?.["Club Member"] && (
-            <p>
-              <strong>Club Name:</strong> {data?.["Club Name"]}
-            </p>
-          )}
           {data?.["Vouched By"] && data["Vouched By"].length > 0 ? (
             <p>
               <strong>Vouched By:</strong> {data?.["Vouched By"].join(", ")}
@@ -149,13 +149,6 @@ const VerifyUserPage = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          {/* <Button
-            disabled={data?.["Vouched By"]?.includes(session?.user.name || "")}
-            onClick={handleVouch}
-            variant="secondary"
-          >
-            Vouch
-          </Button> */}
           <Button
             onClick={() => handleVerification("Approved")}
             disabled={data?.["Verification Status"] === "Approved"}
