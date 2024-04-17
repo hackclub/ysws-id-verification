@@ -48,8 +48,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         fields: {
           "Project Name": [projectRecord.id],
           Recipient: [record.id],
-          "Ship link": shipLink,
-          "Airtable Form Link": airtableFormLink,
+          "Ship Link": shipLink,
+          "Submission Form Link": airtableFormLink,
           "Custom Analytics (JSON)": customDataJson,
         },
       },
