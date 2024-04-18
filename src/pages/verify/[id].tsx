@@ -50,28 +50,6 @@ const VerifyUserPage = () => {
     }
   };
 
-  // const handleVouch = async () => {
-  //   try {
-  //     if (!data) return;
-
-  //     await fetch("/api/vouch", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ id: data.id }),
-  //     });
-
-  //     toast({
-  //       title: "Success",
-  //       description: `${data.Name} was Vouched by you`,
-  //       duration: 2000,
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   return (
     <main className={`p-10`}>
       <h2 className="mb-10 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">

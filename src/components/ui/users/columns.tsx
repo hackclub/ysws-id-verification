@@ -68,7 +68,7 @@ export const columns: ColumnDef<UserRow>[] = [
               Copy user ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => (window.location.href = `/admin/verify/${user.id}`)}>
+            <DropdownMenuItem onClick={() => (window.location.href = `/verify/${user.id}`)}>
               View user details
             </DropdownMenuItem>
           </DropdownMenuContent>
