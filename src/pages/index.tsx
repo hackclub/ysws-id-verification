@@ -11,7 +11,7 @@ import useSWR from "swr";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const Admin = () => {
+export default function Admin() {
   const { data: session, status } = useSession();
   const { data, isLoading } = useSWR<User[]>("/api/users");
 
@@ -66,7 +66,7 @@ const Admin = () => {
       />
     </main>
   );
-};
+}
 
 const VerifyUser: React.FC<{ person: User }> = ({ person }) => {
   const router = useRouter();
