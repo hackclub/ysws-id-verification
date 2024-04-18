@@ -1,6 +1,5 @@
 import { SignIn, SignOut } from "@/components/Auth";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import { columns } from "@/components/ui/users/columns";
 import { DataTable } from "@/components/ui/users/data-table";
 import admins from "@/lib/admins";
@@ -34,10 +33,7 @@ const Admin = () => {
 
   const pendingUsers =
     data?.filter(
-      (d) =>
-        d["Verification Status"] === "Ongoing" ||
-        d["Verification Status"] === "Pending" ||
-        d["Verification Status"] === "Vouched For"
+      (d) => d["Verification Status"] === "Unknown" || d["Verification Status"] === "Vouched For"
     ) || [];
 
   return (
@@ -73,32 +69,7 @@ const Admin = () => {
 };
 
 const VerifyUser: React.FC<{ person: User }> = ({ person }) => {
-  const { toast } = useToast();
   const router = useRouter();
-
-  const startVerification = async (start: boolean) => {
-    try {
-      if (start) {
-        await fetch("/api/verify", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: person.id, status: "Ongoing" }),
-        });
-
-        toast({
-          title: "Success",
-          description: `Verification started for ${person.Name}`,
-          duration: 2000,
-        });
-      }
-
-      router.push(`/verify/${person.id}`);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div
@@ -110,11 +81,7 @@ const VerifyUser: React.FC<{ person: User }> = ({ person }) => {
         <p className="text-sm">{person["Hack Club Slack ID"]}</p>
         <p className="text-sm">{person.Email}</p>
       </div>
-      {person["Verification Status"] === "Pending" ? (
-        <Button onClick={() => startVerification(true)}>Start Verification</Button>
-      ) : (
-        <Button onClick={() => startVerification(false)}>Continue Verification</Button>
-      )}
+      <Button onClick={() => router.push(`/verify/${person.id}`)}>Start Verification</Button>
     </div>
   );
 };

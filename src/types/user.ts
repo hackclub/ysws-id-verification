@@ -12,7 +12,7 @@ export interface User {
   "Created At": string;
   "Age (years)": number;
   "Vouched By": string[];
-  "Vouch Reason": string;
+  Reason: string;
 }
 
-export type VerificationStatus = "Pending" | "Ongoing" | "Approved" | "Rejected" | "Vouched For";
+export type VerificationStatus = "Unknown" | "Not Eligible" | "Vouched For" | "Eligible";

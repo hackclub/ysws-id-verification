@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             Email: email,
             "Verification Status": "Vouched For",
             "Vouched By": [data.user_name],
-            "Vouch Reason": reason.join(" "),
+            Reason: reason.join(" "),
           },
         },
       ]);
@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             fields: {
               "Vouched By": Array.from(new Set(vouchedBy)),
               "Verification Status": "Vouched For",
-              "Vouch Reason": reason.join(" "),
+              Reason: reason.join(" "),
             },
           },
         ],

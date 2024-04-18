@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (!record) return res.status(200).json(`User ${email} not found`);
     if (
-      record.fields["Verification Status"] !== "Approved" &&
+      record.fields["Verification Status"] !== "Eligible" &&
       record.fields["Verification Status"] !== "Vouched For"
     )
       return res.status(200).json(`User ${email} not verified`);

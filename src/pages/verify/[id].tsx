@@ -124,18 +124,25 @@ const VerifyUserPage = () => {
           ) : (
             <></>
           )}
+          {data?.Reason && data.Reason.length > 0 ? (
+            <p>
+              <strong>Reason:</strong> {data.Reason}
+            </p>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
           <Button
-            onClick={() => handleVerification("Approved")}
-            disabled={data?.["Verification Status"] === "Approved"}
+            onClick={() => handleVerification("Eligible")}
+            disabled={data?.["Verification Status"] === "Eligible"}
           >
             Approve
           </Button>
           <Button
-            onClick={() => handleVerification("Rejected")}
-            disabled={data?.["Verification Status"] === "Rejected"}
+            onClick={() => handleVerification("Not Eligible")}
+            disabled={data?.["Verification Status"] === "Not Eligible"}
             variant="destructive"
           >
             Reject
