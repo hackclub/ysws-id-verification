@@ -1,12 +1,9 @@
 import admins from "@/lib/admins";
 import base from "@/lib/airtable";
+import { withMiddleware } from "@/lib/middleware";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { WebClient } from "@slack/web-api";
 
-const web = new WebClient(process.env.SLACK_BOT_TOKEN as string);
-
-// POST - /api/vouch - Vouch a user
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body;
   const [email, ...reason] = data.text.split(" ") as string[];
 
@@ -53,3 +50,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
+export default withMiddleware("slack")(handler);

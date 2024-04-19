@@ -1,9 +1,9 @@
 import admins from "@/lib/admins";
 import base from "@/lib/airtable";
+import { withMiddleware } from "@/lib/middleware";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-// POST - /api/lookup - Lookup verification status for a user
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body;
   const email = data.text;
   if (!email) return res.status(400).json({ message: "Invalid user" });
@@ -31,3 +31,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json(error.message);
   }
 }
+
+export default withMiddleware("slack")(handler);

@@ -32,7 +32,7 @@ const VerifyUserPage = () => {
     try {
       if (!data) return;
 
-      await fetch("/api/verify", {
+      await fetch("/api/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

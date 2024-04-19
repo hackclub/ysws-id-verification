@@ -4,7 +4,6 @@ import { User } from "@/types/user";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getToken } from "next-auth/jwt";
 
-// GET - /api/users/[id] - Get a user by ID
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 

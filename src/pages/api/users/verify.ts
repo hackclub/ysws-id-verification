@@ -4,7 +4,6 @@ import { VerificationStatus } from "@/types/user";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getToken } from "next-auth/jwt";
 
-// POST - /api/verify - Update a user's verification status
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body as { id: string; status: VerificationStatus };
 
