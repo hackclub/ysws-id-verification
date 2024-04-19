@@ -1,7 +1,7 @@
 import admins from "@/lib/admins";
 import base from "@/lib/airtable";
 import { web } from "@/lib/slack";
-import { checkVerification } from "@/lib/utils";
+import { checkVerification } from "@/lib/slack";
 import type { NextApiRequest, NextApiResponse } from "next";
 import validator from "validator";
 
