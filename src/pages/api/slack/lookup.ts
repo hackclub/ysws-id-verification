@@ -23,7 +23,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       return res
         .status(200)
         .json(
-          `User ${email} not found or not verified. Ask them to head over to https://verify.hackclub.dev to get verified.`
+          `User ${email} not found!`
         );
     }
   } catch (error: any) {
