@@ -57,5 +57,21 @@ export async function checkVerification(
     return false;
   }
 
+  // check if user has already received a grant
+  const grants = await base("Grants")
+    .select({
+      filterByFormula: `AND({Recipient} = '${user.fields.Email}', {Project Name} = '${project.fields.Name}')`,
+    })
+    .firstPage();
+
+  if (grants.length > 0 && project.fields["Multiple Grants Per User"] === false) {
+    await web.chat.postEphemeral({
+      channel: channelId,
+      user: userId,
+      text: `User ${user.fields.Name} has already received a grant for this single grant project`,
+    });
+    return false;
+  }
+
   return { user, project };
 }
