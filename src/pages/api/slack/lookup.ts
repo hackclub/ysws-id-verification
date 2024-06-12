@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body;
-  const email = data.text;
+  const email = data.text.replaceAll("<", "").replaceAll(">", "").split("|")[0].split("mailto:")[1];
   if (!email) return res.status(400).json({ message: "Invalid user" });
 
   if (!admins.includes(data.user_id)) return res.status(401).json({ message: "Unauthorized" });
