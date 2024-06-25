@@ -3,7 +3,10 @@ import base from "@/lib/airtable";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const data = JSON.parse(req.body) as { email?: string; slack_id?: string };
+  const data = (typeof req.body === "string" ? JSON.parse(req.body) : req.body) as {
+    email?: string;
+    slack_id?: string;
+  };
 
   if (!data.email && !data.slack_id) return res.status(400).json({ message: "Invalid user" });
 
