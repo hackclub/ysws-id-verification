@@ -22,7 +22,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         .status(200)
         .json(
           `Verification Status for ${data.email || data.slack_id}: ${
-            record[0].fields["Verification Status"]
+            record.at(-1)?.fields["Verification Status"]
           }`
         );
     } else {
