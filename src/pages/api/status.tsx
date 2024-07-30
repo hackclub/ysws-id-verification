@@ -28,7 +28,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   } catch (error: any) {
     console.error(error);
-    return res.status(200).json(error.message);
+    return res.status(200).json({message: error.message, ...error });
   }
 }
 
