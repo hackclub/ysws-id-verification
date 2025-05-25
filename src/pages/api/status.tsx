@@ -13,7 +13,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const records = await base("Users")
       .select({
-        filterByFormula: `OR({Email} = '${data.email}', {Hack Club Slack ID} = '${data.slack_id}')`,
+        filterByFormula: `OR({Email} = '${data.email}', TRIM({Hack Club Slack ID}) = '${data.slack_id}')`,
         sort: [{ field: "Created At", direction: "desc" }],
       })
       .all();
